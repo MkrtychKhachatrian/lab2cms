@@ -15,7 +15,7 @@
                     <div class="card-header">{{ __('Товари') }}</div>
                     <div class="card-body">
                         @foreach($pages as $page)
-
+                            @if ($page->alias_of != 0 ) @continue; @endif
                         <div class="card" style="width: 55rem;">
                             <div class="card-body">
                                 <h5 class="card-title">{{$page->title}}</h5>

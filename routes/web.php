@@ -20,7 +20,8 @@ Route::get('/', function () {
 
 Route::get('category/categor/{id}', function ($id) {
     $theme = App\Models\Category::find($id);
-    return View::make('admin.pages.categorypages')->with('theme', $theme);
+    $pages = App\Models\Page::where('categorry_id', $id)->get();
+    return View::make('admin.pages.categorypages')->with(['theme'=> $theme,'pages'=> $pages]);
 });
 Route::get('category/categor/{id}/defl', function ($id) {
     $theme = App\Models\Category::find($id);
@@ -60,5 +61,3 @@ Route::get('/{url}', [
     'as'   => 'page::read',
     'uses' => '\App\Http\Controllers\PagesController@show'
 ])->where('url', '[^\s]+');
-
-
